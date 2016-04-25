@@ -1,100 +1,115 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<title></title>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-		<script src="js/zepto.js"></script>
-		<!--<script src="js/ajax.js"></script>
-		<script src="js/assets.js"></script>
-		<script src="js/callbacks.js"></script>
-		<script src="js/data.js"></script>
-		<script src="js/deferred.js"></script>
-		<script src="js/detect.js"></script>
-		<script src="js/form.js"></script>
-		<script src="js/fx.js"></script>
-		<script src="js/fx_methods.js"></script>
-		<script src="js/gesture.js"></script>
-		<script src="js/ie.js"></script>
-		<script src="js/ios3.js"></script>
-		<script src="js/selector.js"></script>
-		<script src="js/stack.js"></script>-->
-		<script src="js/touch.js"></script>
-		<script src="js/event.js"></script>
-		<style>
-			html,body{
-				margin: 0;
-				padding: 0;
-			}
-			.container{
-				margin: 10px;
-				background-color: rgb(65,129,194);
-				text-align: center;
-				position: relative;
-			}
-			.container .box{
-				width: 100%;
-				padding: 100px 0;
-			}
-			.container .type,.container .pos{
-				position: absolute;
-				top: 20px;
-				left: 20px;
-			}
-		</style>
-	</head>
-	<body>
-		<button id="btn">click me</button>
-		<div class="container">
-			<div class="type">
-				<span>type:</span>
-				<span id="type_name">none</span>
-			</div>
-			<div class="box" id="swipe_area">swipe me</div>
-		</div>
-		<div class="container">
-			<div class="pos">
-				<div>
-					<span>X:</span>
-					<span id="x_pos">0</span>
-				</div>
-				<div>
-					<span>Y:</span>
-					<span id="y_pos">0</span>
-				</div>
-			</div>
-			<div class="box" id="touch_area">touch me</div>
-		</div>
-		<script>
-			$(function(){
-				$("#btn").tap(function(){
-					alert(123)
-				})
-				$("#swipe_area").on("swipeLeft",function(e){
-					$("#type_name").html("swipeLeft");
-				})
-				$("#swipe_area").on("swipeRight",function(e){
-					$("#type_name").html("swipeRight");
-				})
-				$("#swipe_area").on("swipeUp",function(e){
-					$("#type_name").html("swipeUp");
-				})
-				$("#swipe_area").on("swipeDown",function(e){
-					$("#type_name").html("swipeDown");
-				})
-				$("#touch_area").on("touchstart",function(e){
-					var touch=e.touches[0];
-					$("#x_pos").html(touch.pageX);
-					$("#y_pos").html(touch.pageY);
-					
-				})
-				$("#touch_area").on("touchmove",function(e){
-					var touch=e.touches[0];
-					$("#x_pos").html(touch.pageX);
-					$("#y_pos").html(touch.pageY);
-					
-				})
-			})
-		</script>
-	</body>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <script src="js/zepto.js"></script>
+    <!--<script src="js/assets.js"></script>
+    <script src="js/callbacks.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/deferred.js"></script>
+    <script src="js/detect.js"></script>
+    <script src="js/form.js"></script>
+    <script src="js/fx.js"></script>
+    <script src="js/fx_methods.js"></script>
+    <script src="js/gesture.js"></script>
+    <script src="js/ie.js"></script>
+    <script src="js/ios3.js"></script>
+    <script src="js/selector.js"></script>
+    <script src="js/stack.js"></script>-->
+    <script src="js/ajax.js"></script>
+    <script src="js/touch.js"></script>
+    <script src="js/event.js"></script>
+    <style>
+        html,body{
+            margin: 0;
+            padding: 0;
+        }
+        .container{
+            margin: 10px;
+            background-color: rgb(65,129,194);
+            text-align: center;
+            position: relative;
+        }
+        .container .box{
+            width: 100%;
+            padding: 100px 0;
+        }
+        .container .type,.container .pos{
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+    </style>
+</head>
+<body>
+<button id="btn">click me</button>
+<div class="container">
+    <div class="type">
+        <span>type:</span>
+        <span id="type_name">none</span>
+    </div>
+    <div class="box" id="swipe_area">swipe me</div>
+</div>
+<div class="container">
+    <div class="pos">
+        <div>
+            <span>X:</span>
+            <span id="x_pos">0</span>
+        </div>
+        <div>
+            <span>Y:</span>
+            <span id="y_pos">0</span>
+        </div>
+    </div>
+    <div class="box" id="touch_area">touch me</div>
+</div>
+<div class="container" id="baidu">
+
+</div>
+<script>
+    var UA=window.navigator.userAgent;
+    var CLICK=UA.match(/(iPhone|ipad|Android|ios|iPod)/i)?"tap":"click";
+    $(function(){
+        $("#btn")[CLICK](function(){
+            alert(123)
+        })
+        $("#swipe_area").on("swipeLeft",function(e){
+            $("#type_name").html("swipeLeft");
+        })
+        $("#swipe_area").on("swipeRight",function(e){
+            $("#type_name").html("swipeRight");
+        })
+        $("#swipe_area").on("swipeUp",function(e){
+            $("#type_name").html("swipeUp");
+        })
+        $("#swipe_area").on("swipeDown",function(e){
+            $("#type_name").html("swipeDown");
+        })
+        $("#touch_area").on("touchstart",function(e){
+            var touch=e.touches[0];
+            $("#x_pos").html(touch.pageX);
+            $("#y_pos").html(touch.pageY);
+
+        })
+        $("#touch_area").on("touchmove",function(e){
+            var touch=e.touches[0];
+            $("#x_pos").html(touch.pageX);
+            $("#y_pos").html(touch.pageY);
+
+        })
+        /*$.ajax({
+         url:"http://www.hoopchina.com",
+         dataType:"html",
+         headers:{
+         "Access-Control-Allow-Origin":"*"
+         },
+         success:function(data){
+         $("#baidu").append(data);
+         }
+         })*/
+    })
+</script>
+</body>
 </html>
