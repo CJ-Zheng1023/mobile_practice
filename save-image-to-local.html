@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>存储图片到本地</title>
+		<script src="js/jquery-1.8.3.js"></script>
+		<script>
+		    var IMAGE_PATH="img/1.jpg";
+			function saveImage(key){
+				var img=document.createElement("img");
+				img.src=IMAGE_PATH;
+				document.body.appendChild(img);
+				img.addEventListener("load",function(){
+					var imgCanvas=document.createElement("canvas"),
+					imgContext=imgCanvas.getContext("2d");
+					imgCanvas.width=this.width;
+					imgCanvas.height=this.height;
+					imgContext.drawImage(this,0,0,this.width,this.height);
+					var imgAsDataURL=imgCanvas.toDataURL("image/png");
+					try{
+						localStorage.setItem(key,imgAsDataURL);
+					}catch(e){
+						console.log("save image error!")
+					}
+				});
+				
+				
+			}
+			function getImage(key){
+				var imgSrc=localStorage.getItem(key);
+				if(!imgSrc){
+					saveImage(key);
+				}else{
+					var imgObj=document.createElement("img");
+					imgObj.src=imgSrc;
+					document.body.appendChild(imgObj);
+				}
+				
+			}
+			$(function(){
+				getImage("image");
+				
+				
+			})
+		</script>
+	</head>
+	<body>
+	</body>
+</html>
